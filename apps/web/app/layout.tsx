@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
+      <Analytics />
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
