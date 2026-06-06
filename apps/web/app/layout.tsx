@@ -32,10 +32,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${ibmPlexMono.variable} h-full antialiased`}
     >
-      <Analytics />
       <body className="min-h-full flex flex-col">
         <Navbar />
         {children}
+        <Analytics />
       </body>
     </html>
   );
