@@ -1,159 +1,108 @@
-# Turborepo starter
+# CostAPI
 
-This Turborepo starter is maintained by the Turborepo core team.
+Normalize cloud billing data into a single developer-friendly schema.
 
-## Using this example
+CostAPI is a pre-launch project exploring a simple idea:
 
-Run the following command:
+> What if AWS CUR, Azure Cost Exports, and GCP Billing Exports could be queried through one consistent API?
 
-```sh
-npx create-turbo@latest
+## The Problem
+
+Cloud billing data is notoriously difficult to work with.
+
+Every provider exports data differently:
+
+* AWS Cost & Usage Reports (CUR)
+* Azure Cost Exports
+* Google Cloud Billing Exports
+
+Each comes with different schemas, export formats, pricing models, and allocation strategies.
+
+Teams building:
+
+* FinOps platforms
+* Internal developer portals
+* MSP billing systems
+* Chargeback & showback tooling
+* Cost analytics products
+
+often spend months building and maintaining billing ETL pipelines before they can ship customer-facing features.
+
+## The Idea
+
+CostAPI aims to provide a normalized layer on top of cloud billing exports.
+
+Instead of dealing with provider-specific formats:
+
+```json
+{
+  "lineItem/UnblendedCost": 421.92,
+  "lineItem/ProductCode": "AmazonEC2"
+}
 ```
 
-## What's inside?
+or
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```json
+{
+  "CostInBillingCurrency": 421.92,
+  "SubscriptionGuid": "..."
+}
 ```
 
-Without global `turbo`, use your package manager:
+you would query a consistent schema:
 
-```sh
-cd my-turborepo
-npx turbo build
-pnpm dlx turbo build
-pnpm exec turbo build
+```json
+{
+  "provider": "aws",
+  "service": "EC2",
+  "region": "us-east-1",
+  "team": "platform",
+  "cost": 421.92,
+  "currency": "USD"
+}
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+## Potential Features
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+* Unified cost schema
+* Tag normalization
+* Cost allocation
+* RI amortization
+* Savings Plan amortization
+* Multi-cloud support
+* Developer-first APIs
 
-```sh
-turbo build --filter=docs
-```
+## Status
 
-Without global `turbo`:
+🚧 Validation Stage
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+CostAPI is currently being explored and validated.
 
-### Develop
+No backend has been built yet.
 
-To develop all apps and packages, run the following command:
+The goal right now is to determine whether teams working with cloud cost data find this problem valuable enough to solve.
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+## Who Is This For?
 
-```sh
-cd my-turborepo
-turbo dev
-```
+* FinOps teams
+* Platform engineering teams
+* Internal developer platform teams
+* MSPs
+* Teams building cloud cost tooling
 
-Without global `turbo`, use your package manager:
+## Interested?
 
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
-```
+If this sounds useful, join the waitlist:
 
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+**https://costapi.vercel.app**
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+Or open an issue describing:
 
-```sh
-turbo dev --filter=web
-```
+* Your use case
+* Current workflow
+* Biggest pain points with cloud billing data
 
-Without global `turbo`:
+Feedback is far more valuable than code at this stage.
 
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+MIT
