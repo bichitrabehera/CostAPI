@@ -7,7 +7,6 @@ const Footer = () => {
     <footer className="border-t border-border">
       <div className="container mx-auto max-w-5xl px-6 py-10">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
-          {/* Brand */}
           <div className="max-w-sm">
             <Link
               href="/"
@@ -26,26 +25,26 @@ const Footer = () => {
           <div className="flex gap-12">
             <div>
               <h3 className="mb-3 text-sm font-semibold text-foreground">
-                Connect
+                Contact 
               </h3>
 
-              <div className="space-y-2 text-sm">
+              <div className="space-x-4 flex justify-center items-center text-sm">
                 <a
                   href="https://x.com/bichitradotdev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                  className="flex bg-white border border-orange-200 p-2 rounded hover:translate-y-0.5 items-center gap-2 text-muted-foreground hover:text-foreground"
                 >
-                  <XDark className="w-5 h-5" />
+                  <XDark className="w-4 h-4" />
                 </a>
 
                 <a
                   href="https://linkedin.com/in/bichitrabehera"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                  className="flex bg-white border border-orange-200  p-2 rounded hover:translate-y-0.5 items-center gap-2 text-muted-foreground hover:text-foreground"
                 >
-                  <LinkedIn className="w-5 h-5" />
+                  <LinkedIn className="w-4 h-4" />
                 </a>
               </div>
             </div>

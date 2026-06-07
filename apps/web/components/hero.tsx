@@ -32,7 +32,7 @@ export const Hero = () => {
     <section className="relative overflow-hidden">
       <div className="planner-bg" />
 
-      <div className="mx-auto max-w-5xl px-6 py-24">
+      <div className="mx-auto max-w-5xl px-6 py-18">
         <div className="mx-auto max-w-4xl text-center">
           <div className="mb-8 inline-flex animate-fade-in items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground shadow-sm">
             <Terminal className="h-3.5 w-3.5 text-primary" />

@@ -23,7 +23,7 @@ export const Navbar = () => {
           CostAPI
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className=" items-center gap-8 space-x-6 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -35,16 +35,9 @@ export const Navbar = () => {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 md:flex">
-          <Link
-            href="#waitlist"
-            className="inline-flex h-9 items-center justify-center rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground transition-all hover:-translate-y-0.5 hover:bg-primary/90 focus-visible:ring-ring/50 focus-visible:ring-[3px]"
-          >
-            Join Waitlist
-          </Link>
-        </div>
+        
 
-        <button
+        {/* <button
           onClick={() => setMobileOpen(!mobileOpen)}
           className="text-muted-foreground md:hidden"
           aria-label="Toggle menu"
@@ -54,10 +47,10 @@ export const Navbar = () => {
           ) : (
             <Menu className="h-5 w-5" />
           )}
-        </button>
+        </button> */}
       </div>
 
-      <div
+      {/* <div
         className={cn(
           "border-t border-border bg-card md:hidden",
           mobileOpen ? "block" : "hidden",
@@ -82,7 +75,7 @@ export const Navbar = () => {
             Join Waitlist
           </Link>
         </div>
-      </div>
+      </div> */}
     </header>
   );
 };
